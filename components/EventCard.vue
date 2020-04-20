@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link :to="'/blog/' + event.id">
+    <nuxt-link :to="{ name: 'event', params: { event: event.id } }">
         <div class="-shadow">
             <span class="eyebrow">@{{ event.time }} on {{ parsedDate }}</span>
             <h4 class="title">{{ event.title }}</h4>
