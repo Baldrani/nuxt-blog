@@ -10,6 +10,7 @@
     </div>
 </template>
 <script>
+//
 import { mapState } from 'vuex'
 import EventCard from '@/components/EventCard.vue'
 
@@ -27,13 +28,13 @@ export default {
             })
         }
     },
+    computed: mapState({
+        events: (state) => state.events.events
+    }),
     head() {
         return {
             title: 'Event Listing'
         }
-    },
-    computed: mapState({
-        events: (state) => state.events.events
-    })
+    }
 }
 </script>
