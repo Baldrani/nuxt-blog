@@ -7,10 +7,20 @@
             :event="event"
             :data-index="index"
         />
+        <script>
+            if (window.netlifyIdentity) {
+                window.netlifyIdentity.on('init', (user) => {
+                    if (!user) {
+                        window.netlifyIdentity.on('login', () => {
+                            document.location.href = '/admin/'
+                        })
+                    }
+                })
+            }
+        </script>
     </div>
 </template>
 <script>
-//
 import { mapState } from 'vuex'
 import EventCard from '@/components/EventCard.vue'
 
@@ -33,7 +43,13 @@ export default {
     }),
     head() {
         return {
-            title: 'Event Listing'
+            title: 'Event Listing',
+            script: [
+                {
+                    src:
+                        'https://identity.netlify.com/v1/netlify-identity-widget.js'
+                }
+            ]
         }
     }
 }
