@@ -16,11 +16,10 @@ export const actions = {
         const files = await require.context(
             '~/assets/content/blog/',
             false,
-            /\.json$/
+            /\.md$/
         )
         const blogPosts = files.keys().map((key) => {
             const res = files(key)
-            res.slug = key.slice(2, -5)
             return res
         })
         await commit('setBlogPosts', blogPosts)
