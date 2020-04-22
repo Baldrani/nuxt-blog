@@ -1,3 +1,5 @@
+import path from 'path'
+import fs from 'fs'
 import EventService from './services/EventService.js'
 
 export default {
@@ -5,6 +7,12 @@ export default {
     /*
      ** Headers of the page
      */
+    server: {
+        https: {
+            key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+            cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
+        }
+    },
     head: {
         title: process.env.npm_package_name || '',
         meta: [{
