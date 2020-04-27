@@ -1,5 +1,3 @@
-import path from 'path'
-import fs from 'fs'
 import EventService from './services/EventService.js'
 
 export default {
@@ -7,12 +5,6 @@ export default {
     /*
      ** Headers of the page
      */
-    server: {
-        https: {
-            key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-            cert: fs.readFileSync(path.resolve(__dirname, 'server.crt'))
-        }
-    },
     head: {
         title: process.env.npm_package_name || '',
         meta: [{
@@ -64,7 +56,38 @@ export default {
         '@nuxtjs/pwa',
         // Doc: https://github.com/nuxt-community/dotenv-module
         '@nuxtjs/dotenv',
-        '@nuxtjs/markdownit'
+        '@nuxtjs/markdownit',
+        [
+            'nuxt-i18n',
+            {
+                locales: [{
+                        name: 'Français',
+                        code: 'fr',
+                        iso: 'fr-FR',
+                        file: 'fr-FR.js'
+                    },
+                    {
+                        name: 'English',
+                        code: 'en',
+                        iso: 'en-US',
+                        file: 'en-US.js'
+                    }
+                ],
+                vueI18n: {
+                    fallbackLocale: 'en',
+                    messages: {
+                        en: {
+                            greeting: 'Hello world!'
+                        },
+                        es: {
+                            greeting: '¡Hola mundo!'
+                        }
+                    }
+                },
+                langDir: 'lang/',
+                defaultLocale: 'fr'
+            }
+        ]
     ],
     markdownit: {
         injected: true
