@@ -1,7 +1,7 @@
 <template>
     <div>
         <article v-for="(post, i) in posts" :key="i">
-            <div v-html="$md.render(Object.values(post)[0])" />
+            <!-- <div v-html="$md.render(Object.values(post)[0])" /> -->
         </article>
     </div>
 </template>

@@ -51,6 +51,9 @@ export default {
             })
         }
     },
+    computed: mapState({
+        event: (state) => state.events.event
+    }),
     head() {
         return {
             title: 'Event Listing ' + this.id,
@@ -62,9 +65,6 @@ export default {
                 }
             ]
         }
-    },
-    computed: mapState({
-        event: (state) => state.events.event
-    })
+    }
 }
 </script>
