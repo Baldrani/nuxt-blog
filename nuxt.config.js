@@ -7,8 +7,7 @@ export default {
      */
     head: {
         title: process.env.npm_package_name || '',
-        meta: [
-            {
+        meta: [{
                 charset: 'utf-8'
             },
             {
@@ -21,13 +20,11 @@ export default {
                 content: process.env.npm_package_description || ''
             }
         ],
-        link: [
-            {
-                rel: 'icon',
-                type: 'image/x-icon',
-                href: '/favicon.ico'
-            }
-        ]
+        link: [{
+            rel: 'icon',
+            type: 'image/x-icon',
+            href: '/favicon.ico'
+        }]
     },
     /*
      ** Customize the progress-bar color
@@ -63,8 +60,7 @@ export default {
         [
             'nuxt-i18n',
             {
-                locales: [
-                    {
+                locales: [{
                         name: 'Français',
                         code: 'fr',
                         iso: 'fr-FR',
@@ -73,8 +69,8 @@ export default {
                     {
                         name: 'English',
                         code: 'en',
-                        iso: 'en-US',
-                        file: 'en-US.js'
+                        iso: 'en-EN',
+                        file: 'en-EN.js'
                     }
                 ],
                 lazy: true, // Lazy load language files
