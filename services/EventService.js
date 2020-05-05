@@ -4,8 +4,8 @@ const apiClient = axios.create({
     baseURL: 'https://my-json-server.typicode.com/Baldrani/nuxt-blog',
     withCredentials: false,
     headers: {
-        Accept: 'applciation/json',
-        'Content-Type': 'applciation/josn'
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
     }
 })
 

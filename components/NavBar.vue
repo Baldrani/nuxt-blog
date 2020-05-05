@@ -1,5 +1,5 @@
 <template name="component-name">
-    <div class="nav">
+    <v-app-bar class="nav">
         <nuxt-link to="/" class="brand">Real World Events</nuxt-link>
         <nav>
             <nuxt-link :to="localePath('/')">List</nuxt-link>
@@ -7,34 +7,15 @@
             <nuxt-link :to="localePath('/blog/create')">Create</nuxt-link>
             <nuxt-link :to="switchLocalePath('en')">English</nuxt-link>
             <nuxt-link :to="switchLocalePath('fr')">Français</nuxt-link>
+            <v-spacer />
+            <div v-if="$auth.loggedIn">
+                {{ $auth.user.email }}
+                <nuxt-link :to="localePath('/logout')">Logout</nuxt-link>
+            </div>
+            <div v-else>
+                <nuxt-link :to="localePath('/login')">Login</nuxt-link>
+                <nuxt-link :to="localePath('/register')">Register</nuxt-link>
+            </div>
         </nav>
-    </div>
+    </v-app-bar>
 </template>
-<style scoped>
-.brand {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    font-size: 1.5em;
-    color: #39b982;
-    text-decoration: none;
-}
-.nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 60px;
-}
-.nav .nav-item {
-    box-sizing: border-box;
-    margin: 0 5px;
-    color: rgba(0, 0, 0, 0.5);
-    text-decoration: none;
-}
-.nav .nav-item.router-link-exact-active {
-    color: #39b982;
-    border-bottom: solid 2px #39b982;
-}
-.nav a {
-    display: inline-block;
-}
-</style>

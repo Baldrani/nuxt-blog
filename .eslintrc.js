@@ -14,11 +14,9 @@ module.exports = {
         'plugin:prettier/recommended',
         'plugin:nuxt/recommended'
     ],
-    plugins: [
-        'prettier'
-    ],
+    plugins: ['prettier'],
     // add your custom rules here
     rules: {
-        "vue/no-v-html": off
+        'vue/no-v-html': 0
     }
 }

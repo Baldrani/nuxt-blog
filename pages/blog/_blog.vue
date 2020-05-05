@@ -1,44 +1,25 @@
 <template>
     <article>
-        <div v-html="content" />
+        <div v-html="hello" />
     </article>
 </template>
 <script>
-import marked from 'marked'
+const test = require(`~/content/posts/2019-09-22-test.md`)
+const MarkdownIt = require('markdown-it')
+const meta = require('markdown-it-meta')
 
-import hljs from 'highlight.js/lib/core'
-import javascript from 'highlight.js/lib/languages/javascript'
-hljs.registerLanguage('javascript', javascript)
-
-marked.setOptions({
-    renderer: new marked.Renderer(),
-    highlight(code, language) {
-        const hljs = require('highlight.js')
-        const validLanguage = hljs.getLanguage(language)
-            ? language
-            : 'plaintext'
-        return hljs.highlight(validLanguage, code).value
-    },
-    pedantic: false,
-    gfm: true,
-    breaks: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    xhtml: false
-})
+// Make new instance
+const md = new MarkdownIt()
+// Add markdown-it-meta
+md.use(meta)
 
 export default {
-    async asyncData({ params, payload }) {
-        if (payload) return { blogPost: payload }
-        else
-            return {
-                post: await require(`~/content/posts/${params.blog}.md`)
-            }
-    },
     computed: {
         content() {
-            return marked(Object.values(this.post)[0])
+            return md.render(test)
+        },
+        meta() {
+            return md.meta
         }
     }
 }

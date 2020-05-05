@@ -1,3 +1,4 @@
+import Prism from 'prismjs'
 import EventService from './services/EventService.js'
 
 export default {
@@ -45,7 +46,8 @@ export default {
      */
     buildModules: [
         // Doc: https://github.com/nuxt-community/eslint-module
-        '@nuxtjs/eslint-module'
+        '@nuxtjs/eslint-module',
+        '@nuxtjs/vuetify'
     ],
     /*
      ** Nuxt.js modules
@@ -53,6 +55,7 @@ export default {
     modules: [
         // Doc: https://axios.nuxtjs.org/usage
         '@nuxtjs/axios',
+        '@nuxtjs/auth',
         '@nuxtjs/pwa',
         // Doc: https://github.com/nuxt-community/dotenv-module
         '@nuxtjs/dotenv',
@@ -92,15 +95,54 @@ export default {
                     alwaysRedirect: false,
                     // If no locale for the browsers locale is a match, use this one as a fallback
                     fallbackLocale: null
-                },
+                }
             }
         ]
     ],
     markdownit: {
+        preset: 'default',
         linkify: true,
         breaks: true,
         use: ['markdown-it-div', 'markdown-it-attrs', 'markdown-it-meta']
     },
+    auth: {
+        strategies: {
+            local: {
+                endpoints: {
+                    login: {
+                        url: '/api/auth/login',
+                        method: 'post',
+                        propertyName: 'token'
+                    },
+                    logout: {
+                        url: '/api/auth/logout',
+                        method: 'post'
+                    },
+                    user: {
+                        url: '/api/auth/user',
+                        method: 'get',
+                        propertyName: 'user'
+                    }
+                }
+                // tokenRequired: true,
+                // tokenType: 'bearer'
+                // autoFetchUser: true
+            }
+        }
+    },
+    // parsers: {
+    //     md: {
+    //         // Configuration to use Prism.js processor (https://prismjs.com/)
+    //         extend(config) {
+    //             config.highlight = (code, lang) => {
+    //                 return `<pre class="language-${lang}"><code class="language-${lang}">${Prism.highlight(
+    //                     code,
+    //                     Prism.languages[lang] || Prism.languages.markup
+    //                 )}</code></pre>`
+    //             }
+    //         }
+    //     }
+    // },
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
